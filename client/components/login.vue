@@ -31,8 +31,28 @@
 		    <label for="password">Пароль</label>
 		    <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
 		  </div>
-		  <button type="submit" class="btn btn-primary" id="log">Войти!</button>
+		  <button type="submit" class="btn btn-primary" id="log" v-on:click="login">Войти!</button>
 		  <center><a href="http://localhost:8080/#/register" class="form-link" >Регистрация</a></center>
 		</form>
 	</div>
 </template>
+
+<script>
+	module.exports={
+		methods:{
+			login: function() {
+				console.log("login");
+				event.preventDefault();
+				let form = document.getElementById("login_form");
+				let promise = this.$auth.logIn(form.login.value, form.password.value);
+				promise.then(function(response){
+					console.log("Login success!");
+					this.$router.push("/feed");
+				}).catch(function(response){
+					console.log("Error!");
+					console.log(response);
+				});
+			}
+		}
+	}
+</script>

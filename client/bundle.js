@@ -15,9 +15,70 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 })()}
 },{"vue":16,"vue-hot-reload-api":11}],2:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#log[data-v-7fe5f014]{\n\tbackground: blue;\n\twidth: 100%;\n\tborder-color: grey;\n\tmargin-top: 20px;\n}\ninput[data-v-7fe5f014], #log[data-v-7fe5f014]{\n\tbox-shadow: 0 0 10px rgba(0,0,0,0.5);\n}\nform[data-v-7fe5f014]{\n\twidth: 700px;\n}\n*[data-v-7fe5f014]{\n\tfont-size: 25px;\n\tmargin-top: 10px;\n}\na[data-v-7fe5f014]{\n\tfont-size: 17px;\n}")
+;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports={
+	methods:{
+		login: function() {
+			console.log("login");
+			event.preventDefault();
+			let form = document.getElementById("login_form");
+			let promise = this.$auth.logIn(form.login.value, form.password.value);
+			promise.then(function(response){
+				console.log("Login success!");
+				this.$router.push("/feed");
+			}).catch(function(response){
+				console.log("Error!");
+				console.log(response);
+			});
+		}
+	}
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('form',{attrs:{"id":"login_form"}},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"submit","id":"log"}},[_vm._v("Войти!")]),_vm._v(" "),_c('center',[_c('a',{staticClass:"form-link",attrs:{"href":"http://localhost:8080/#/register"}},[_vm._v("Регистрация")])])],1)])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('form',{attrs:{"id":"login_form"}},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"submit","id":"log"},on:{"click":_vm.login}},[_vm._v("Войти!")]),_vm._v(" "),_c('center',[_c('a',{staticClass:"form-link",attrs:{"href":"http://localhost:8080/#/register"}},[_vm._v("Регистрация")])])],1)])}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"login"}},[_vm._v("Логин")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"login","placeholder":"Введите Логин","name":"login"}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"password"}},[_vm._v("Пароль")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password","placeholder":"Введите пароль","name":"password"}})])}]
 __vue__options__._scopeId = "data-v-7fe5f014"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
@@ -33,10 +94,74 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 })()}
 },{"vue":16,"vue-hot-reload-api":11,"vueify/lib/insert-css":18}],3:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#reg[data-v-656e4048]{\n\tbackground: red;\n\twidth: 100%;\n\tborder-color: grey;\n}\ninput[data-v-656e4048], #reg[data-v-656e4048]{\n\tbox-shadow: 0 0 10px rgba(0,0,0,0.5);\n}\nform[data-v-656e4048]{\n\twidth: 700px;\n}\n*[data-v-656e4048]{\n\tfont-size: 25px;\n}")
+;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports={
+	methods:{
+		register: function() {
+			console.log("register");
+			event.preventDefault();
+			let form = document.getElementById("reg_form");
+			let login = form.login.value;
+			let password = form.password1.value;
+			let repeat_password = form.password2.value;
+			if (password === repeat_password) {
+				let promise = this.$auth.register(login, password);
+				promise.then(function(response){
+					console.log("Registration success!");
+					this.$router.push("/login");
+				}).catch(function(response){
+					console.log("Error!");
+					console.log(response);
+				});
+			}else{
+				console.log("Пароли не совпадают");
+			}
+		}
+	}
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',[_c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"login"}},[_vm._v("Логин")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"login"}})]),_vm._v(" "),_c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"password1"}},[_vm._v("Пароль")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password1"}})]),_vm._v(" "),_c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"password2"}},[_vm._v("Повторите пароль")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password2"}})]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"submit","id":"reg"}},[_vm._v("Зарегистрироваться")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"id":"reg_form"}},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"submit","id":"reg"},on:{"click":_vm.register}},[_vm._v("Зарегистрироваться")])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"login"}},[_vm._v("Логин")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"login"}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"password1"}},[_vm._v("Пароль")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password1"}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mb-3"},[_c('label',{staticClass:"form-label",attrs:{"for":"password2"}},[_vm._v("Повторите пароль")]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password2"}})])}]
 __vue__options__._scopeId = "data-v-656e4048"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
