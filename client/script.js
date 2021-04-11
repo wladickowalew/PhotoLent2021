@@ -17,7 +17,7 @@ let router = new VueRouter({
 	routes:[
 		{path:"/register", component: register},
 		{path:"/login",    component: login},
-		{path:"/",    component: index},
+		{path:"/",         component: index},
 		{path:"/feed",     component: feed}
 	]
 });
