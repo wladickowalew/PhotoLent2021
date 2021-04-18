@@ -14,7 +14,20 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":21,"vue-hot-reload-api":16}],2:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body[data-v-56c45043]{\n\talign-items: normal;\n}\n#content[data-v-56c45043]{\n\tmargin: 10px;\n\tmargin-top: 100px;\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31,27 +44,36 @@ module.exports={
 		photoCard: PhotoCard
 	},
 	data: function() {
-		return {records: [1]}
+		return {records: []}
 	},
+	mounted: function(){
+		this.$http.get("/feed", {bearer: true}).then(
+			function(res){
+				console.log(res.body);
+				this.records = res.body;
+			});
+	}
 }	
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('header-m'),_vm._v(" "),_vm._l((_vm.records),function(record){return _c('photo-card',{attrs:{"record":record}})})],2)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('header-m'),_vm._v(" "),_c('div',{attrs:{"id":"content"}},_vm._l((_vm.records),function(record){return _c('photo-card',{attrs:{"record":record}})}),1)],1)}
 __vue__options__.staticRenderFns = []
+__vue__options__._scopeId = "data-v-56c45043"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-56c45043", __vue__options__)
   } else {
     hotAPI.reload("data-v-56c45043", __vue__options__)
   }
 })()}
-},{"./header.vue":3,"./photoCard.vue":6,"vue":21,"vue-hot-reload-api":16}],3:[function(require,module,exports){
+},{"./header.vue":3,"./photoCard.vue":6,"vue":21,"vue-hot-reload-api":16,"vueify/lib/insert-css":23}],3:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#header[data-v-5d81ae72]{\n\tbackground: lightgray;\n\twidth: 100%;\n\theight: 80px;\n\tposition: fixed;\n\tleft: 0px;\n\tright: 0px;\n\ttop: 0px;\n\tdisplay: flex;\n\talign-items: center;\n\tz-index: 1;\n}\na[data-v-5d81ae72]{\n\tmargin: 20px;\n}\n*[data-v-5d81ae72]{\n\tfont-size: 25px;\n}")
 ;(function(){
 //
@@ -259,7 +281,7 @@ module.exports = {props: ["record"]};
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card",staticStyle:{"width":"18rem"}},[_c('div',{staticClass:"card-header"},[_c('h5',{staticClass:"card-title"},[_vm._v(_vm._s("Имя автора"))])]),_vm._v(" "),_c('img',{staticClass:"card-img-top",attrs:{"src":"https://place-hold.it/500x500"}})])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card",staticStyle:{"width":"18rem"}},[_c('div',{staticClass:"card-header"},[_c('h5',{staticClass:"card-title"},[_vm._v(_vm._s(_vm.record.user))])]),_vm._v(" "),_c('img',{staticClass:"card-img-top",attrs:{"src":'./data/' + _vm.record.file}})])}
 __vue__options__.staticRenderFns = []
 __vue__options__._scopeId = "data-v-b66bc1e6"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")

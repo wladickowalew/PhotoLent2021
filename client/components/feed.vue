@@ -1,7 +1,19 @@
+<style scoped>
+	body{
+		align-items: normal;
+	}
+	#content{
+		margin: 10px;
+		margin-top: 100px;
+	}
+</style>
+
 <template>
 	<div>
 		<header-m></header-m>
-		<photo-card v-for="record in records" v-bind:record="record"></photo-card>
+		<div id="content">
+			<photo-card v-for="record in records" v-bind:record="record"></photo-card>
+		</div>
 	</div>
 </template>
 
@@ -14,7 +26,14 @@
 			photoCard: PhotoCard
 		},
 		data: function() {
-			return {records: [1]}
+			return {records: []}
 		},
+		mounted: function(){
+			this.$http.get("/feed", {bearer: true}).then(
+				function(res){
+					console.log(res.body);
+					this.records = res.body;
+				});
+		}
 	}	
 </script>
