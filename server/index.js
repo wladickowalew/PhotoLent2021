@@ -28,7 +28,8 @@ app.post("/upload", [vjmServer.jwtProtector,
 	});
 app.get("/feed",vjmServer.jwtProtector, function (req, res) {
 	console.log("call photos");
-	database.collection("files").find({}).sort({date:-1}).limit(10).toArray(
+	database.collection("files").find({}).sort({date:-1})
+	                                        .limit(10).toArray(
 		function(err, doc){
 			console.log(doc);
 			let string = JSON.stringify(doc);
